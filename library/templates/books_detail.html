@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ book.title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #2c3e50;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .book-info {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .book-info strong {
+            color: #3498db;
+        }
+
+        .back-link {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .back-link:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="book-info">
+        <h1>{{ book.title }}</h1>
+        <p><strong>Muallif:</strong> {{ book.author.name }}</p>
+        <p><strong>Baholash:</strong> {{ book.rating }}</p>
+        <p><strong>Shartnoma narxi:</strong> {{ book.price }} so'm</p>
+        <p><strong>Format:</strong> {{ book.get_format_display }}</p>
+        <p><strong>Kategoriyalar:</strong>
+            {% for category in book.categories.all %}
+                {{ category.name }}
+            {% endfor %}
+        </p>
+        <p><strong>Availabilite:</strong> {{ book.get_availability_display }}</p>
+        <p><strong>Batafsil:</strong> {{ book.published_date }}</p>
+    </div>
+    <a class="back-link" href="{% url 'books_list' %}">Orqaga qaytish</a>
+</body>
+</html>
